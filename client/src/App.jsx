@@ -37,7 +37,7 @@ function App() {
             <Route path="/ranking" element={<RankingPage />} />
           </Route>
 
-        
+          
           <Route path="*" element={<NotFoundPage />} />
 
         </Route>

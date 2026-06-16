@@ -21,7 +21,7 @@ body {
   min-height: 100vh;
 }
 
-/* ---- Navbar ---- */
+/* ---- NAVBAR ---- */
 .lr-navbar {
   background-color: rgba(15, 23, 42, 0.85) !important; /* translucent navy */
   backdrop-filter: blur(8px);
@@ -86,3 +86,28 @@ body {
 
 /* Muted text helper */
 .lr-muted { color: var(--lr-text-muted) !important; }
+
+
+/* ---- HOME PAGE ----*/
+/* Action cards (gradient tiles) hover lift */
+.lr-action-card {
+  border: none;
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+.lr-action-card:hover {
+  transform: translateY(-4px);
+  filter: brightness(1.08);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+}
+
+/* Feature icon circles */
+.lr-feature-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
