@@ -1,111 +1,88 @@
+/* ===== Last Race - dark navy theme (Figma look) ===== */
+
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  --lr-bg: #0f172a;          /* page background (slate-900) */
+  --lr-bg-gradient-1: #111c33;
+  --lr-surface: #1e293b80;   /* card surface (slate-800, semi-transparent) */
+  --lr-surface-solid: #1e293b;
+  --lr-input-bg: #0f172a80;  /* input background */
+  --lr-border: #334155;      /* borders (slate-700) */
+  --lr-text: #f1f5f9;        /* main text (slate-100) */
+  --lr-text-muted: #94a3b8;  /* muted text (slate-400) */
+  --lr-primary: #3b82f6;     /* blue-500 */
+  --lr-primary-hover: #2563eb;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
+/* Page background: subtle dark gradient like the mockup */
 body {
-  margin: 0;
+  background: radial-gradient(1200px 600px at 50% -10%, var(--lr-bg-gradient-1), var(--lr-bg));
+  background-attachment: fixed;
+  color: var(--lr-text);
+  min-height: 100vh;
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+/* ---- Navbar ---- */
+.lr-navbar {
+  background-color: rgba(15, 23, 42, 0.85) !important; /* translucent navy */
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--lr-border);
+}
+.lr-navbar .nav-link {
+  color: var(--lr-text-muted) !important;
+}
+.lr-navbar .nav-link:hover,
+.lr-navbar .nav-link.active {
+  color: var(--lr-text) !important;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+/* ---- Login card ---- */
+.lr-card {
+  background-color: var(--lr-surface);
+  border: 1px solid var(--lr-border);
+  border-radius: 1rem;
+  backdrop-filter: blur(4px);
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
-}
-
-code,
-.counter {
-  font-family: var(--mono);
+/* Blue circle holding the login icon */
+.lr-icon-circle {
+  width: 72px;
+  height: 72px;
+  background-color: rgba(59, 130, 246, 0.2); /* blue glow */
+  border-radius: 50%;
   display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+  align-items: center;
+  justify-content: center;
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+/* ---- Inputs (dark) ---- */
+.lr-input.form-control {
+  background-color: var(--lr-input-bg);
+  border: 1px solid var(--lr-border);
+  color: var(--lr-text);
+  padding: 0.75rem 1rem;
 }
+.lr-input.form-control::placeholder {
+  color: var(--lr-text-muted);
+}
+.lr-input.form-control:focus {
+  background-color: var(--lr-input-bg);
+  color: var(--lr-text);
+  border-color: var(--lr-primary);
+  box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25);
+}
+
+/* ---- Primary button ---- */
+.lr-btn-primary.btn {
+  background-color: var(--lr-primary);
+  border-color: var(--lr-primary);
+  padding: 0.75rem;
+  font-weight: 600;
+}
+.lr-btn-primary.btn:hover,
+.lr-btn-primary.btn:focus {
+  background-color: var(--lr-primary-hover);
+  border-color: var(--lr-primary-hover);
+}
+
+/* Muted text helper */
+.lr-muted { color: var(--lr-text-muted) !important; }
