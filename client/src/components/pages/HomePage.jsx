@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { Container, Row, Col, Card, Image } from 'react-bootstrap';
 import {TrainFront, PlayCircle, Trophy, BookHalf, ArrowRight, Clock, Coin, QuestionCircle} from 'react-bootstrap-icons';
 import { AuthContext } from '../../contexts/AuthContext';
+import MetroAnimation from '../ui/MetroAnimation';
 
 
 function HomePage() {
@@ -24,7 +25,10 @@ function HomePage() {
         </p>
       </div>
 
-      
+      {/* ===== Hero Animation ===== */}
+      <div className="mb-5 rounded-4 overflow-hidden shadow-lg">
+        <MetroAnimation />
+      </div>
 
       {/* ===== Quick Actions ===== */}
       <Row className="g-4 mb-5">
