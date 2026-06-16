@@ -40,7 +40,7 @@ function MetroAnimation() {
           points="120,360 360,360 440,280 600,280 680,360 900,360" />
         <polyline className="lr-line d3" stroke="#10b981"
           points="120,120 200,120 280,200 440,200 520,280 760,280 760,360" />
-        <polyline className="lr-line d4" stroke="#f59e0b"
+        <polyline className="lr-line d4" stroke="#facc15"
           points="120,360 280,360 360,280 600,280 680,200 760,200 840,120 900,120" />
         <polyline className="lr-line d2" stroke="#a855f7"
           points="520,200 520,280" />

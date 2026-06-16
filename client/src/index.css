@@ -150,3 +150,121 @@ body {
     stroke-dashoffset: 0;
   }
 }
+
+/* ---- ISTRUCTIONS PAGE ----*/
+
+.lr-instructions .lr-title {
+  color: var(--lr-text);
+  font-weight: 700;
+  font-size: 2.25rem;
+}
+
+.lr-instructions .lr-subtitle {
+  color: var(--lr-text);
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+.lr-instructions .lr-step-title {
+  color: var(--lr-text);
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin-bottom: .4rem;
+}
+
+.lr-instructions .lr-rule-title {
+  color: var(--lr-text);
+  font-weight: 600;
+}
+
+/* small hint rows under each phase */
+.lr-instructions .lr-hint {
+  color: var(--lr-text-muted);
+  font-size: .9rem;
+}
+
+/* round numbered step badge */
+.lr-step-circle {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+/* colored icon/step variants (translucent backgrounds, like Figma) */
+.lr-icon-blue   { background: rgba(59, 130, 246, .2);  color: #60a5fa; }
+.lr-icon-amber  { background: rgba(245, 158, 11, .2);  color: #fbbf24; }
+.lr-icon-green  { background: rgba(16, 185, 129, .2);  color: #34d399; }
+.lr-icon-violet { background: rgba(168, 85, 247, .2);  color: #c084fc; }
+
+/* header icon circle reuses the blue variant but larger */
+.lr-instructions .lr-icon-circle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* demo route station chips */
+.lr-station-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  background: var(--lr-surface);
+  border: 1px solid var(--lr-border);
+  color: var(--lr-text);
+  border-radius: 999px;
+  padding: .35rem .75rem;
+  font-size: .9rem;
+}
+.lr-line-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* planet line cards */
+.lr-line-card {
+  background: var(--lr-surface);
+  border: 1px solid var(--lr-border);
+  border-radius: .6rem;
+  padding: .6rem .8rem;
+}
+.lr-line-name {
+  color: var(--lr-text);
+  font-weight: 600;
+}
+
+/* demo events table */
+.lr-events {
+  border: 1px solid var(--lr-border);
+  border-radius: .75rem;
+  overflow: hidden;
+}
+.lr-event-row {
+  padding: .65rem 1rem;
+  border-bottom: 1px solid var(--lr-border);
+}
+.lr-event-row:last-child {
+  border-bottom: none;
+}
+.lr-event-head {
+  background: var(--lr-surface);
+  color: var(--lr-text-muted);
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.lr-coins-total {
+  color: var(--lr-text);
+  min-width: 32px;
+  text-align: right;
+}

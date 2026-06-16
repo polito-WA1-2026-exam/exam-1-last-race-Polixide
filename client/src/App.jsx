@@ -11,6 +11,7 @@ import { NotFoundPage } from './components/pages/NotFoundPage'
 import { AuthProvider } from './contexts/AuthProvider'
 import { AuthContext } from './contexts/AuthContext'
 import { ProtectedRoute } from './components/layout/ProtectedRoute'
+import {InstructionsPage} from './components/pages/InstructionsPage'
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route element={<Layout />}>
 
           <Route path="/" element={<HomePage />} />
+          <Route path="/instructions" element={<InstructionsPage/>} />
           <Route
             path="/login"
             element={user ? <Navigate to="/" replace /> : <LoginPage />}
@@ -33,11 +35,10 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="/game" element={<GamePage />} />
 
-            
             <Route path="/ranking" element={<RankingPage />} />
           </Route>
 
-          
+
           <Route path="*" element={<NotFoundPage />} />
 
         </Route>
