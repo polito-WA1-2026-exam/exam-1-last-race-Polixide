@@ -10,7 +10,7 @@ function LoginPage() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [submitting, setSubmitting] = useState(false);
-
+    
     const { login } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ function LoginPage() {
             await login({ username, password });
             navigate('/game');
         } catch (err) {
-            setError(err.message || 'Wrong credentials');
+            setError('Wrong credentials');
         } finally {
             setSubmitting(false);
         }
