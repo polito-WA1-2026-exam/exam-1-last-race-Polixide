@@ -32,11 +32,11 @@ initSchema();
 
 db.serialize(() => {
     // ---- Users (best_score inlined: the seeded results are known) ----
-    db.run('INSERT INTO users (username,email, hash, salt, best_score) VALUES (?, ?, ?, ?)',
-        ['user.1', 'user.1@polito.it' , user1.hash, user2.salt, 23]);
-    db.run('INSERT INTO users (username,email, hash, salt, best_score) VALUES (?, ?, ?, ?)',
+    db.run('INSERT INTO users (username,email, hash, salt, best_score) VALUES (?, ?, ?, ?, ?)',
+        ['user.1', 'user.1@polito.it' , user1.hash, user1.salt, 23]);
+    db.run('INSERT INTO users (username,email, hash, salt, best_score) VALUES (?, ?, ?, ?, ?)',
         ['dani.c', 'dani.c@polito.it', dani.hash, dani.salt, 27]);
-    db.run('INSERT INTO users (username,email, hash, salt, best_score) VALUES (?, ?, ?, ?)',
+    db.run('INSERT INTO users (username,email, hash, salt, best_score) VALUES (?, ?, ?, ?, ?)',
         ['user.2','user.2@polito.it' , user2.hash, user2.salt, 0]);
 
     // ---- Lines ----
