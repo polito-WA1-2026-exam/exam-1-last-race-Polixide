@@ -15,13 +15,22 @@ function AuthProvider({ children }) {
   }, []);
 
   const login = async (credentials) => {
-    const u = await authApi.login(credentials);
-    setUser(u);
+    try {
+      const u = await authApi.login(credentials);
+      setUser(u);
+    } catch (error) {
+      throw new Error(error);
+    }
     return u;
   };
 
   const logout = async () => {
-    await authApi.logout();
+    try {
+      await authApi.logout();
+    } catch (error) {
+      throw new Error(error);
+    }
+    
     setUser(null);
   };
 

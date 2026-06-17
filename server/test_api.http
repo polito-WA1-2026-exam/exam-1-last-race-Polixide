@@ -1,0 +1,31 @@
+@PREFIX=http://localhost:3001/api
+
+// Authentication APIs
+
+###
+GET {{PREFIX}}/sessions/current
+
+
+###
+POST {{PREFIX}}/sessions
+Content-Type: application/json
+
+{
+    "username": "dani.c",
+    "password": "password!"
+}
+
+###
+POST {{PREFIX}}/sessions
+Content-Type: application/json
+
+{
+    "username": "wrong",
+    "password": "wrong"
+}
+
+###
+DELETE  {{PREFIX}}/sessions/current
+
+
+// Game APIs

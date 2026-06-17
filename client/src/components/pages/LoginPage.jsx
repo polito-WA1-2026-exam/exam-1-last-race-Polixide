@@ -22,7 +22,7 @@ function LoginPage() {
             await login({ username, password });
             navigate('/game');
         } catch (err) {
-            setError('Wrong credentials');
+            setError(err.message);
         } finally {
             setSubmitting(false);
         }

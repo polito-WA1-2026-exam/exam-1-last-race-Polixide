@@ -27,6 +27,8 @@ app.use(session({
 }));
 app.use(passport.authenticate('session'));
 
+// API routes
+
 app.use('/api', auth_routes);
 
 
