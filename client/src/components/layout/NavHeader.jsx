@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Container, Nav, Navbar, Button } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router';
-import { House, Book, TrainFront, Trophy, BoxArrowRight, BoxArrowInRight } from 'react-bootstrap-icons';
+import { House, Book, TrainFront, Trophy, BoxArrowRight, BoxArrowInRight, Controller, BoxArrowInLeft } from 'react-bootstrap-icons';
 import { AuthContext } from '../../contexts/AuthContext';
 
 function NavHeader() {
@@ -44,7 +44,7 @@ function NavHeader() {
             {isAuthenticated && (
               <>
                 <Nav.Link as={Link} to="/game" className={navLinkClass('/game')}>
-                  <TrainFront size={16} />
+                  <Controller size={16} />
                   <span>Play Game</span>
                 </Nav.Link>
 
@@ -62,8 +62,8 @@ function NavHeader() {
                 <Navbar.Text className="me-2 lr-muted">
                   Welcome, <strong className="text-white">{user?.username}</strong>
                 </Navbar.Text>
-                <Button variant="outline-light" onClick={handleLogout} className="d-flex align-items-center gap-2">
-                  <BoxArrowRight size={16} />
+                <Button variant="outline-light" onClick={handleLogout} className="d-flex align-items-center gap-2 px-4">
+                  <BoxArrowInLeft size={16} />
                   <span>Logout</span>
                 </Button>
               </>

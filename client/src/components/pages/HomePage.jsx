@@ -19,7 +19,7 @@ function HomePage() {
           <TrainFront className="text-primary" size={48} />
         </div>
         <h1 className="display-3 fw-bold text-white mb-3">Last Race</h1>
-        <p className="lead lr-muted mx-auto" style={{ maxWidth: '640px' }}>
+        <p className="lead lr-text mx-auto" style={{ maxWidth: '640px' }}>
           Navigate the underground metro network, plan your route wisely, and race
           against time to reach your destination with the highest score!
         </p>

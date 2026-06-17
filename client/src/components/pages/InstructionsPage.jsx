@@ -34,7 +34,7 @@ function InstructionsPage() {
             {/* Header */}
             <div className="text-center mb-5">
                 <div className="lr-icon-circle lr-icon-blue mx-auto mb-3">
-                    <BookHalf size={40} />
+                    <BookHalf size={48} />
                 </div>
                 <h1 className="lr-title mb-2">How to Play</h1>
                 

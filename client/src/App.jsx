@@ -6,13 +6,12 @@ import Layout from './components/layout/Layout'
 import { HomePage } from './components/pages/HomePage'
 import { GamePage } from './components/pages/GamePage'
 import { LoginPage } from './components/pages/LoginPage'
-import { RankingPage } from './components/pages/RankingPage'
 import { NotFoundPage } from './components/pages/NotFoundPage'
 import { AuthProvider } from './contexts/AuthProvider'
 import { AuthContext } from './contexts/AuthContext'
 import { ProtectedRoute } from './components/layout/ProtectedRoute'
 import {InstructionsPage} from './components/pages/InstructionsPage'
-
+import { RankingsPage } from './components/pages/RankingsPage'
 
 function App() {
 
@@ -35,7 +34,7 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="/game" element={<GamePage />} />
 
-            <Route path="/ranking" element={<RankingPage />} />
+            <Route path="/rankings" element={<RankingsPage />} />
           </Route>
 
 
