@@ -4,7 +4,9 @@ import morgan from 'morgan';
 import cors from 'cors';
 import passport from "./auth/passport_handler.js";
 import session from 'express-session';
-import auth_routes from './routes/auth_routes.js'
+import auth_routes from './routes/auth_routes.js';
+import game_routes from './routes/game_routes.js';
+
 
 // init express
 const app = new express();
@@ -30,7 +32,7 @@ app.use(passport.authenticate('session'));
 // API routes
 
 app.use('/api', auth_routes);
-
+app.use('/api', game_routes);
 
 app.use((err, req, res, next) => {
   console.error(err);

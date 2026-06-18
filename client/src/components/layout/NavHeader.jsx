@@ -18,13 +18,13 @@ function NavHeader() {
   };
 
   const navLinkClass = (path) =>
-    `d-flex align-items-center gap-2 ${isActive(path) ? 'active fw-semibold' : ''}`;
+    `d-flex align-items-center gap-2 fs-5 ${isActive(path) ? 'active fw-semibold' : ''}`;
 
   return (
-    <Navbar variant="dark" expand="lg" sticky="top" className="lr-navbar">
+    <Navbar variant="dark" expand="lg" sticky="top" className="lr-navbar py-2">
       <Container fluid="lg">
-        <Navbar.Brand as={Link} to="/" className="d-flex align-items-center gap-2 fw-bold text-white">
-          <TrainFront size={24} className="text-primary" />
+        <Navbar.Brand as={Link} to="/" className="d-flex align-items-center gap-2 fs-4 fw-bold text-white">
+          <TrainFront size={32} className="text-primary" />
           <span>Last Race</span>
         </Navbar.Brand>
 
@@ -59,17 +59,17 @@ function NavHeader() {
           <Nav className="ms-auto d-flex align-items-lg-center gap-2">
             {isAuthenticated ? (
               <>
-                <Navbar.Text className="me-2 lr-muted">
+                <Navbar.Text className="me-2 lr-muted fs-5">
                   Welcome, <strong className="text-white">{user?.username}</strong>
                 </Navbar.Text>
-                <Button variant="outline-light" onClick={handleLogout} className="d-flex align-items-center gap-2 px-4">
-                  <BoxArrowInLeft size={16} />
+                <Button variant="outline-light" onClick={handleLogout} className="d-flex align-items-center gap-2 px-4 fs-5">
+                  <BoxArrowInLeft size={20} />
                   <span>Logout</span>
                 </Button>
               </>
             ) : (
-              <Button as={Link} to="/login" className="lr-btn-primary d-flex align-items-center gap-2 px-4">
-                <BoxArrowInRight size={16} />
+              <Button as={Link} to="/login" className="lr-btn-primary d-flex align-items-center gap-2 px-4 fs-5">
+                <BoxArrowInRight size={20} />
                 <span>Login</span>
               </Button>
             )}

@@ -29,3 +29,7 @@ DELETE  {{PREFIX}}/sessions/current
 
 
 // Game APIs
+
+###
+
+GET {{PREFIX}}/users/ranking

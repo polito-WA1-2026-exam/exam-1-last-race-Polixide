@@ -268,3 +268,83 @@ body {
   min-width: 32px;
   text-align: right;
 }
+
+/* RANKINGS PAGE */
+/* RANKINGS PAGE */
+.lr-rk-title {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.lr-rk-back-btn {
+  color: var(--lr-text-muted);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+.lr-rk-back-btn:hover {
+  color: var(--lr-text);
+}
+
+/* Header icon circle (amber tint, scoped to rankings) */
+.lr-rk-icon-circle {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(250, 204, 21, 0.18);
+}
+
+/* Medal colors */
+.lr-rk-gold { color: #facc15; }
+.lr-rk-silver { color: #cbd5e1; }
+.lr-rk-bronze { color: #d97706; }
+
+.lr-rk-num {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--lr-text-muted);
+}
+
+/* Ranking row card (own class, does NOT reuse the global .lr-card) */
+.lr-rk-card {
+  background-color: rgba(30, 41, 59, 0.3);
+  border: 1px solid var(--lr-border);
+  border-radius: 14px;
+}
+
+.lr-rk-icon-col {
+  width: 64px;
+}
+
+.lr-rk-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.lr-rk-score {
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Top-3 gradient cards */
+.lr-rk-card-gold {
+  background: linear-gradient(90deg, rgba(245, 158, 11, 0.20), rgba(217, 119, 6, 0.20));
+  border-color: rgba(245, 158, 11, 0.50);
+}
+.lr-rk-card-silver {
+  background: linear-gradient(90deg, rgba(148, 163, 184, 0.20), rgba(100, 116, 139, 0.20));
+  border-color: rgba(148, 163, 184, 0.50);
+}
+.lr-rk-card-bronze {
+  background: linear-gradient(90deg, rgba(249, 115, 22, 0.20), rgba(234, 88, 12, 0.20));
+  border-color: rgba(249, 115, 22, 0.50);
+}
+
+/* Highlight the logged-in user */
+.lr-rk-card-me {
+  box-shadow: 0 0 0 2px var(--lr-primary);
+}
