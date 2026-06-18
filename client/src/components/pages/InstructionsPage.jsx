@@ -188,7 +188,7 @@ function InstructionsPage() {
                     <Row className="g-3">
                         {[
                             { name: 'Mars', color: LINES.mars },
-                            { name: 'Jupiter', color: LINES.jupiter },
+                            { name: 'Jupyter', color: LINES.jupiter },
                             { name: 'Earth', color: LINES.earth },
                             { name: 'Neptune', color: LINES.neptune },
                         ].map((l) => (
