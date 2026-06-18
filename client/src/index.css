@@ -270,7 +270,6 @@ body {
 }
 
 /* RANKINGS PAGE */
-/* RANKINGS PAGE */
 .lr-rk-title {
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -347,4 +346,28 @@ body {
 /* Highlight the logged-in user */
 .lr-rk-card-me {
   box-shadow: 0 0 0 2px var(--lr-primary);
+}
+
+/* RANKINGS PAGE - USER STATS */
+/* Personal stats card (blue tint, like Figma) */
+.lr-rk-stats-card {
+  background-color: rgba(59, 130, 246, 0.18);
+  border: 1px solid rgba(59, 130, 246, 0.50);
+  border-radius: 14px;
+}
+
+.lr-rk-stat-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(15, 23, 42, 0.45);
+}
+
+.lr-rk-stat-value {
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1;
 }

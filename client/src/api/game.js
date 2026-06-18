@@ -12,4 +12,16 @@ const getRanking = async () => {
   return res.json();
 }
 
-export { getRanking };
+// Get the stats of the logged in user
+const getUserStats = async () => {
+  const res = await fetch(`${SERVER_URL}/games/stats`, {
+    credentials: 'include',
+  });
+  if(!res.ok) {
+    const err = await res.json();
+    throw new Error(err.error);
+  }
+  return res.json();
+}
+
+export { getRanking, getUserStats };

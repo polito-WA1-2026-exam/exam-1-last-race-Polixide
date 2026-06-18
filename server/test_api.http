@@ -33,3 +33,7 @@ DELETE  {{PREFIX}}/sessions/current
 ###
 
 GET {{PREFIX}}/users/ranking
+
+###
+
+GET {{PREFIX}}/games/stats

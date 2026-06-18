@@ -34,13 +34,13 @@ initSchema();
 db.serialize(() => {
     // ---- Users (best_score inlined: the seeded results are known) ----
     db.run('INSERT INTO users (username,email, hash, salt, best_score) VALUES (?, ?, ?, ?, ?)',
-        ['user.1', 'user.1@polito.it' , user1.hash, user1.salt, 23]);
+        ['user.1', 'user.1@polito.it', user1.hash, user1.salt, 23]);
     db.run('INSERT INTO users (username,email, hash, salt, best_score) VALUES (?, ?, ?, ?, ?)',
         ['dani.c', 'dani.c@polito.it', dani.hash, dani.salt, 27]);
     db.run('INSERT INTO users (username,email, hash, salt, best_score) VALUES (?, ?, ?, ?, ?)',
-        ['user.2','user.2@polito.it' , user2.hash, user2.salt, 10]);
+        ['user.2', 'user.2@polito.it', user2.hash, user2.salt, 10]);
     db.run('INSERT INTO users (username,email, hash, salt, best_score) VALUES (?, ?, ?, ?, ?)',
-        ['user.3','user.3@polito.it' , user3.hash, user3.salt, 0]);
+        ['user.3', 'user.3@polito.it', user3.hash, user3.salt, 0]);
 
     // ---- Lines ----
     db.run("INSERT INTO lines (name, color) VALUES ('Mars', '#f43f5e')");
@@ -95,14 +95,14 @@ db.serialize(() => {
         db.run('INSERT INTO events (description, coin_change) VALUES (?, ?)', [description, coin_change]);
     }
 
-    /*
+    
     // ---- Games: a few past games for dani.c and user.1 ----
     
-    db.run('INSERT INTO games (user_id, start_station, dest_station, score) VALUES (1, ?, ?, 18)', [sid['Vega'], sid['Polaris']]);
-    db.run('INSERT INTO games (user_id, start_station, dest_station, score) VALUES (1, ?, ?, 23)', [sid['Andromeda'], sid['Lyra']]);
-    db.run('INSERT INTO games (user_id, start_station, dest_station, score) VALUES (2, ?, ?, 15)', [sid['Helios'], sid['Halcyon']]);
-    db.run('INSERT INTO games (user_id, start_station, dest_station, score) VALUES (2, ?, ?, 27)', [sid['Solaris'], sid['Calypso']]);
-    */
+    db.run("INSERT INTO games (user_id, start_station, dest_station, score, date_played) VALUES (1, ?, ?, 18, '2026-06-10')", [sid['Vega'], sid['Polaris']]);
+    db.run("INSERT INTO games (user_id, start_station, dest_station, score, date_played) VALUES (1, ?, ?, 23, '2026-06-14')", [sid['Andromeda'], sid['Lyra']]);
+    db.run("INSERT INTO games (user_id, start_station, dest_station, score, date_played) VALUES (2, ?, ?, 15, '2026-06-11')", [sid['Helios'], sid['Halcyon']]);
+    db.run("INSERT INTO games (user_id, start_station, dest_station, score, date_played) VALUES (2, ?, ?, 27, '2026-06-16')", [sid['Solaris'], sid['Calypso']]);
+    
     console.log('Database seeded successfully.');
 });
 

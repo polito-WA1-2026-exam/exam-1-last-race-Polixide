@@ -76,6 +76,7 @@ function LoginPage() {
                         <Button type="submit" className="lr-btn-primary w-100" disabled={submitting}>
                             {submitting ? 'Logging in...' : 'Login'}
                         </Button>
+                        
                     </Form>
 
                     {/* Demo accounts */}

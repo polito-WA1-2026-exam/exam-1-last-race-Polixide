@@ -4,6 +4,7 @@ import { Container, Card, Row, Col, Button, Spinner, Badge } from 'react-bootstr
 import { TrophyFill, Award, AwardFill, ArrowLeft } from 'react-bootstrap-icons';
 import { AuthContext } from '../../contexts/AuthContext.js';
 import { UserCardRanking } from '../ui/UserCardRanking.jsx';
+import { UserStats } from '../ui/UserStats.jsx';
 import * as gameApi from '../../api/game.js';
 
 function RankingsPage() {
@@ -11,19 +12,23 @@ function RankingsPage() {
   const navigate = useNavigate();
 
   const [rankings, setRankings] = useState([]);
+  const [userStats, setUserStats] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  
+
   // Load the ranking from the server on mount.
   useEffect(() => {
-    gameApi.getRanking()
-      .then((data) => setRankings(data))
+    Promise.all([gameApi.getRanking(), gameApi.getUserStats()])
+      .then(([ranking, stats]) => {
+        setRankings(ranking);
+        setUserStats(stats)
+      })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, []);
 
-  
-  
+
+
   return (
     <Container className="py-4" style={{ maxWidth: '880px' }}>
 
@@ -78,8 +83,17 @@ function RankingsPage() {
         )
       )}
 
+      {/* Current user stats */}
+      {!loading && !error && userStats && (
+        <UserStats
+          user={user}
+          stats={userStats}
+          rank={rankings.findIndex((u) => u.id === user.id) + 1}
+        />
+      )}
+
     </Container>
   );
 }
 
-export {RankingsPage};
+export { RankingsPage };

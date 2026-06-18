@@ -11,4 +11,10 @@ router.get('/users/ranking', isLoggedIn, (req, res) => {
     .catch((err) => res.status(500).json({ error: 'Error while retrieving the ranking.'}));
 });
 
+router.get('/games/stats', isLoggedIn, (req, res) => {
+  gameDao.getUserStats(req.user.id) // user id from the session
+    .then((stats) => res.json(stats))
+    .catch(() => res.status(500).json({ error: 'Error while retrieving your stats.' }));
+});
+
 export default router;
