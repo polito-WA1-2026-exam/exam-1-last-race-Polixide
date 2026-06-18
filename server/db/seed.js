@@ -38,7 +38,7 @@ db.serialize(() => {
     db.run('INSERT INTO users (username,email, hash, salt, best_score) VALUES (?, ?, ?, ?, ?)',
         ['dani.c', 'dani.c@polito.it', dani.hash, dani.salt, 27]);
     db.run('INSERT INTO users (username,email, hash, salt, best_score) VALUES (?, ?, ?, ?, ?)',
-        ['user.2', 'user.2@polito.it', user2.hash, user2.salt, 10]);
+        ['user.2', 'user.2@polito.it', user2.hash, user2.salt, 0]);
     db.run('INSERT INTO users (username,email, hash, salt, best_score) VALUES (?, ?, ?, ?, ?)',
         ['user.3', 'user.3@polito.it', user3.hash, user3.salt, 0]);
 

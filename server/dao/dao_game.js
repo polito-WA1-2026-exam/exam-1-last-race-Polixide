@@ -17,6 +17,7 @@ function GameDao() {
             
             const query = `SELECT
                             COUNT(*) AS games_played,
+                            MAX(score) AS best_score,
                             COALESCE(AVG(score), 0) AS avg_score,
                             MAX(date_played) AS last_played
                             FROM games WHERE user_id = ?`;

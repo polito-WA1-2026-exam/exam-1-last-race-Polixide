@@ -28,7 +28,6 @@ function RankingsPage() {
   }, []);
 
 
-
   return (
     <Container className="py-4" style={{ maxWidth: '880px' }}>
 
@@ -86,7 +85,6 @@ function RankingsPage() {
       {/* Current user stats */}
       {!loading && !error && userStats && (
         <UserStats
-          user={user}
           stats={userStats}
           rank={rankings.findIndex((u) => u.id === user.id) + 1}
         />
