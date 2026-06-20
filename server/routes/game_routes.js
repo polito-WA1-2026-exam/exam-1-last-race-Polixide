@@ -2,7 +2,7 @@ import express from 'express';
 import { body, param, validationResult } from 'express-validator';
 import { isLoggedIn } from '../middleware/isLoggedIn.js';
 import GameDao from '../dao/dao_game.js';
-import { buildAdjacency, findValidPairs, validateRoute, executeRoute } from '../game_logic.js';
+
 
 const router = express.Router();
 const gameDao = new GameDao();
@@ -25,6 +25,15 @@ router.get('/games/stats', isLoggedIn, async (req, res) => {
     }
 });
 
+// Returns lines, stations (with interchange flag) and segments for the client map
+router.get('/network', isLoggedIn, async (req, res) => {
+    try {
+        const network = await gameDao.getNetwork();
+        res.json(network);
+    } catch {
+        res.status(500).json({ error: 'Error while retrieving the network.' });
+    }
+});
 
 
 export default router;
