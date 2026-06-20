@@ -39,6 +39,17 @@ function GameDao() {
         return { lines, stations, segments };
     };
 
+    this.getAllStations = () =>
+        dbAll('SELECT id, name, is_interchange AS isInterchange FROM stations');
+
+    this.getAllSegments = () =>
+        dbAll('SELECT id, line_id, from_station, to_station FROM segments');
+
+    this.getAllEvents = () =>
+        dbAll('SELECT id, description, coin_change FROM events');
+
+    
+
 }
 
 export default GameDao;

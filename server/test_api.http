@@ -38,3 +38,13 @@ GET {{PREFIX}}/users/ranking
 
 GET {{PREFIX}}/games/stats
 
+###
+GET {{PREFIX}}/network
+
+###
+POST {{PREFIX}}/games
+Content-Type: application/json
+
+{
+    
+}
