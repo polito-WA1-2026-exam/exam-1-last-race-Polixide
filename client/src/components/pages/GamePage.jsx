@@ -35,12 +35,16 @@ function GamePage() {
 
     const handleRouteSubmitted = async (route) => {
         try {
-            
+            setError('');
+            const result = await submitRoute(game.gameId, route);
+            setExecutionData(result);
+            // If route is invalid/incomplete, skip execution and go straight to result
+            setPhase(result.valid ? 'execution' : 'result');
         } catch (err) {
             setError(err.message);
         }
     };
-    
+
     const handleNewGame = () => {
         setGame(null);
         setExecutionData(null);
@@ -65,15 +69,15 @@ function GamePage() {
                 return <SetupPhase networkData={networkData} onReady={handleReady} />;
             case 'planning':
                 return (
-                    <PlanningPhase networkData={networkData} game={game} onSubmitted={handleRouteSubmitted}/>
+                    <PlanningPhase networkData={networkData} game={game} onSubmitted={handleRouteSubmitted} />
                 );
             case 'execution':
                 return (
-                    <ExecutionPhase/>
+                    <ExecutionPhase />
                 );
             case 'result':
                 return (
-                    <ResultPhase/>
+                    <ResultPhase />
                 );
             default:
                 return null;

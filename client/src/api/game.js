@@ -27,5 +27,15 @@ const createGame = async () => {
     return res.json();
 };
 
+const submitRoute = async (gameId, route) => {
+    const res = await fetch(`${SERVER_URL}/games/${gameId}/route`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ route }),
+    });
+    if (!res.ok) throw new Error((await res.json()).error);
+    return res.json();
+};
 
-export { getRanking, getUserStats, getNetwork, createGame };
+export { getRanking, getUserStats, getNetwork, createGame, submitRoute };

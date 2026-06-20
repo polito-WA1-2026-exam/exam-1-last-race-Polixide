@@ -55,7 +55,21 @@ function GameDao() {
             [userId, startStation, destStation]
         );
 
+    // Returns the game only if it belongs to userId and has not been completed yet
+    this.getGameById = (gameId, userId) =>
+        dbGet(
+            'SELECT * FROM games WHERE id = ? AND user_id = ? AND score IS NULL',
+            [gameId, userId]
+        );
 
+    this.saveGameResult = async (gameId, userId, finalScore) => {
+        await dbRun('UPDATE games SET score = ? WHERE id = ?', [finalScore, gameId]);
+        // Update the user's best_score only if this game surpasses it
+        await dbRun(
+            'UPDATE users SET best_score = ? WHERE id = ? AND best_score < ?',
+            [finalScore, userId, finalScore]
+        );
+    };
 }
 
 export default GameDao;
