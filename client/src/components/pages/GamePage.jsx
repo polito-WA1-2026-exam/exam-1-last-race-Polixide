@@ -33,6 +33,13 @@ function GamePage() {
         }
     };
 
+    const handleRouteSubmitted = async (route) => {
+        try {
+            
+        } catch (err) {
+            setError(err.message);
+        }
+    };
     
     const handleNewGame = () => {
         setGame(null);
@@ -58,7 +65,7 @@ function GamePage() {
                 return <SetupPhase networkData={networkData} onReady={handleReady} />;
             case 'planning':
                 return (
-                    <PlanningPhase/>
+                    <PlanningPhase networkData={networkData} game={game} onSubmitted={handleRouteSubmitted}/>
                 );
             case 'execution':
                 return (
