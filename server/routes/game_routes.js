@@ -1,7 +1,7 @@
 import express from 'express';
 import { body, param, validationResult } from 'express-validator';
 import { isLoggedIn } from '../middleware/isLoggedIn.js';
-import { buildAdjacency, findValidPairs } from '../game_logic.js';
+import { buildAdjacency, findValidPairs, validateRoute, executeRoute } from '../game_logic.js';
 import GameDao from '../dao/dao_game.js';
 
 
@@ -95,12 +95,13 @@ router.post(
         try {
             const gameId = parseInt(req.params.gameId, 10);
             const { route } = req.body;
-
+            //we need to retrieve the game
             const game = await gameDao.getGameById(gameId, req.user.id);
             if (!game) {
                 return res.status(404).json({ error: 'Game not found or already completed.' });
             }
 
+            //take all the information about segments ,events, stations
             const [segments, events, stations] = await Promise.all([
                 gameDao.getAllSegments(),
                 gameDao.getAllEvents(),
@@ -110,7 +111,7 @@ router.post(
             const interchangeIds = new Set(
                 stations.filter(s => s.isInterchange).map(s => s.id)
             );
-
+            //validation of the route sent by the user (the list of segment ids)
             const { valid, invalidReason } = validateRoute(
                 route, game.start_station, game.dest_station, segments, interchangeIds
             );

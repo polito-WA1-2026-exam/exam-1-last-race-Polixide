@@ -61,7 +61,7 @@ function findValidPairs(stationIds, adj, minDistance = 3) {
   - line changes happen only at interchange stations
   - the last station reached is destStation
 */
-export function validateRoute(segmentIds, startStation, destStation, segments, interchangeIds) {
+function validateRoute(segmentIds, startStation, destStation, segments, interchangeIds) {
 
     const segById = Object.fromEntries(segments.map(s => [s.id, s]));
 
@@ -98,7 +98,7 @@ export function validateRoute(segmentIds, startStation, destStation, segments, i
 }
 
 // Walks the segment list, picks a random event per segment, and returns the steps. Always starts with 20 coins.
-export function executeRoute(segmentIds, startStation, segments, events, stationNames) {
+function executeRoute(segmentIds, startStation, segments, events, stationNames) {
     
     const segById = Object.fromEntries(segments.map(s => [s.id, s]));
 
@@ -127,4 +127,4 @@ export function executeRoute(segmentIds, startStation, segments, events, station
     return { steps, coins };
 }
 
-export {buildAdjacency,findValidPairs}
+export {buildAdjacency,findValidPairs,validateRoute,executeRoute}
