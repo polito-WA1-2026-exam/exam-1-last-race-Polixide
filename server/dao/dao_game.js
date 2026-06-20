@@ -48,7 +48,13 @@ function GameDao() {
     this.getAllEvents = () =>
         dbAll('SELECT id, description, coin_change FROM events');
 
-    
+    this.createGameRecord = (userId, startStation, destStation) =>
+        dbRun(
+            `INSERT INTO games (user_id, start_station, dest_station, score, date_played)
+             VALUES (?, ?, ?, NULL, date('now'))`,
+            [userId, startStation, destStation]
+        );
+
 
 }
 

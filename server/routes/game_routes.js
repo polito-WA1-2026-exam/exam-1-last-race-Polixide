@@ -48,26 +48,26 @@ router.post('/games', isLoggedIn, async (req, res) => {
             gameDao.getAllStations(),
             gameDao.getAllSegments(),
         ]);
-
+        
         const stationIds = stations.map(s => s.id);
         //we build the adjacency list for all the station ids using the list of segments
         const adj = buildAdjacency(stationIds, segments);
         //we obtain the list of valid (start,dest) ids (i.e stations that has the minimum shortest path of 3 stations using BFS)
         const validPairs = findValidPairs(stationIds, adj);
-
+        
         if (validPairs.length === 0) {
             return res.status(500).json({ error: 'No valid station pairs found in the network.' });
         }
 
         //we randomly select one valid pair randomly
-        const { startID, destID } = validPairs[Math.floor(Math.random() * validPairs.length)];
+        const { start, dest } = validPairs[Math.floor(Math.random() * validPairs.length)];
         //we initialize a new game by creating a record in the games table with the score = NULL
         const { lastID: gameId } = await gameDao.createGameRecord(req.user.id, start, dest);
 
-
-        const startStation = stations.find(s => s.id === startID);
-        const destStation  = stations.find(s => s.id === destID);
-
+        
+        const startStation = stations.find(s => s.id === start);
+        const destStation  = stations.find(s => s.id === dest);
+        
         res.status(201).json({
             gameId,
             startStation: { id: startStation.id, name: startStation.name },
