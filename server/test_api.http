@@ -37,3 +37,4 @@ GET {{PREFIX}}/users/ranking
 ###
 
 GET {{PREFIX}}/games/stats
+

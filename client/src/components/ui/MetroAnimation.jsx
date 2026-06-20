@@ -53,7 +53,7 @@ function MetroAnimation() {
         </g>
 
         {/* interchange hubs */}
-        <g fill="#0b1222" stroke="#f8fafc" strokeWidth="5">
+        <g fill="#0b1222" stroke="#f8fafc" strokeWidth="3.5">
           {HUBS.map(([cx, cy, r]) => (
             <circle key={`h-${cx}-${cy}`} cx={cx} cy={cy} r={r} />
           ))}

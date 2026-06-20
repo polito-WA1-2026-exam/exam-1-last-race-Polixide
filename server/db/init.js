@@ -26,7 +26,8 @@ function initSchema() {
     // Network stations table
     db.run(`CREATE TABLE IF NOT EXISTS stations (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      name TEXT NOT NULL UNIQUE
+      name TEXT NOT NULL UNIQUE,
+      is_interchange INTEGER NOT NULL DEFAULT 0
     )`);
 
     // Segments table : a direct connection between two stations on a specific line
@@ -48,13 +49,13 @@ function initSchema() {
       coin_change INTEGER NOT NULL CHECK (coin_change BETWEEN -4 AND 4)
     )`);
 
-    // One row per completed game; score clamped to 0 if negative.
+    // One row per game; score is NULL until the route is submitted and executed.
     db.run(`CREATE TABLE IF NOT EXISTS games (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       user_id INTEGER NOT NULL,
       start_station INTEGER NOT NULL,
       dest_station INTEGER NOT NULL,
-      score INTEGER NOT NULL,
+      score INTEGER,
       date_played TEXT NOT NULL DEFAULT (datetime('now')),
       FOREIGN KEY (user_id) REFERENCES users(id),
       FOREIGN KEY (start_station) REFERENCES stations(id),

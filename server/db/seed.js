@@ -56,6 +56,10 @@ db.serialize(() => {
     for (const name of stations) {
         db.run('INSERT INTO stations (name) VALUES (?)', [name]);
     }
+    // Mark the four interchange stations (appear on 2+ lines)
+    for (const name of ['Orion', 'Helios', 'Solaris', 'Nova']) {
+        db.run('UPDATE stations SET is_interchange = 1 WHERE name = ?', [name]);
+    }
 
     // Station id lookup (matches insertion order, ids start at 1).
     const sid = {};

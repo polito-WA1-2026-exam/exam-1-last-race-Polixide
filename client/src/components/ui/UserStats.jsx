@@ -35,7 +35,7 @@ function UserStats({ stats, rank }) {
                 {/* Second row: 2 stats, centered */}
                 <Row className="align-items-start justify-content-center">
                     <StatTile icon={<GraphUp size={26} className="text-primary" />}
-                        value={stats.avg_score} label="Average Score" />
+                        value={Number(stats.avg_score).toFixed(1)} label="Average Score" />
                     <StatTile icon={<ClockHistory size={26} className="text-primary" />}
                         value={lastPlayed} label="Last Played" />
                 </Row>
