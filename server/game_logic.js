@@ -53,4 +53,78 @@ function findValidPairs(stationIds, adj, minDistance = 3) {
     return pairs;
 }
 
+/*
+  Validates the ordered list of segment IDs submitted by the player.
+  Walks the segments one by one starting from startStation, checking:
+  - each segment ID exists in the DB
+  - each segment connects to the current station (route is not broken)
+  - line changes happen only at interchange stations
+  - the last station reached is destStation
+*/
+export function validateRoute(segmentIds, startStation, destStation, segments, interchangeIds) {
+
+    const segById = Object.fromEntries(segments.map(s => [s.id, s]));
+
+    let current = startStation;
+    let currentLine = null;
+
+    for (const id of segmentIds) {
+        const seg = segById[id];
+        if (!seg)
+            return { valid: false, invalidReason: 'Unknown segment' };
+
+        // Determine direction: which end of the segment connects to where we are?
+        let next;
+        if (seg.from_station === current){
+            next = seg.to_station;
+        }else if (seg.to_station === current) {
+            next = seg.from_station;
+        }else return { valid: false, invalidReason: 'Route is not connected' };
+
+        // Line change: only allowed at interchange stations
+        if (currentLine !== null && seg.line_id !== currentLine) {
+            if (!interchangeIds.has(current))
+                return { valid: false, invalidReason: 'Line change at a non-interchange station' };
+        }
+
+        currentLine = seg.line_id;
+        current = next;
+    }
+
+    if (current !== destStation)
+        return { valid: false, invalidReason: 'Route does not reach the destination' };
+
+    return { valid: true, invalidReason: null };
+}
+
+// Walks the segment list, picks a random event per segment, and returns the steps. Always starts with 20 coins.
+export function executeRoute(segmentIds, startStation, segments, events, stationNames) {
+    
+    const segById = Object.fromEntries(segments.map(s => [s.id, s]));
+
+    let coins   = 20;
+    let current = startStation;
+    const steps = [];
+
+    for (const id of segmentIds) {
+
+        const seg   = segById[id];
+        const next  = seg.from_station === current ? seg.to_station : seg.from_station;
+        const event = events[Math.floor(Math.random() * events.length)];
+
+        coins += event.coin_change;
+
+        steps.push({
+            fromStation:  stationNames[current],
+            toStation:    stationNames[next],
+            event:        event.description,
+            coinChange:   event.coin_change,
+            runningTotal: coins,
+        });
+        current = next;
+    }
+
+    return { steps, coins };
+}
+
 export {buildAdjacency,findValidPairs}
