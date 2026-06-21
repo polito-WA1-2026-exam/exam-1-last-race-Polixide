@@ -78,6 +78,21 @@ router.post('/games', isLoggedIn, async (req, res) => {
     }
 });
 
+// Deletes an incomplete game (user abandoned it)
+router.delete('/games/:gameId', isLoggedIn, param('gameId').isInt({ min: 1 }), async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).json({ error: 'Invalid game id.' });
+    }
+    try {
+        const gameId = parseInt(req.params.gameId, 10);
+        await gameDao.deleteGame(gameId, req.user.id);
+        res.status(204).end();
+    } catch {
+        res.status(500).json({ error: 'Error while deleting the game.' });
+    }
+});
+
 // Validates and executes the route submitted by the player
 router.post(
     '/games/:gameId/route',

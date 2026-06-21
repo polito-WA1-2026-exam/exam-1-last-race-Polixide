@@ -16,7 +16,7 @@ import {
 function CoinDelta({ value }) {
   if (value >= 0) return <span className="text-success fw-semibold">+{value} coins</span>;
   return <span className="text-danger fw-semibold">{value} coins</span>;
-  
+
 }
 
 function ExecutionPhase({ executionData, onFinished }) {
@@ -38,19 +38,27 @@ function ExecutionPhase({ executionData, onFinished }) {
     if (nextStep <= steps.length) {
       setCurrentStep(nextStep);
 
-      if (nextStep === steps.length ) {
+      if (nextStep === steps.length) {
         setDone(true);
       }
     }
   };
 
-  const displayCoins = currentStep >= 0 && steps[currentStep] ? steps[currentStep].runningTotal : 20;
+  const displayCoins = steps[currentStep - 1] ? steps[currentStep - 1].runningTotal : 20;
 
 
   if (!valid) {
     return (
       <div className="text-center py-4">
-        <XCircleFill size={48} className="text-danger mb-3" />
+        <div
+          className="mx-auto mb-3 d-flex align-items-center justify-content-center rounded-circle"
+          style={{
+            width: 96, height: 96,
+            background: 'rgba(239,68,68,0.18)',
+          }}
+        >
+          <XCircleFill size={44} className="text-danger" />
+        </div>
         <h1 className="lr-rk-title text-white mb-3">Invalid Route</h1>
 
         <Card className="lr-rk-card mx-auto mb-4" style={{ maxWidth: 520 }}>
@@ -101,7 +109,7 @@ function ExecutionPhase({ executionData, onFinished }) {
             {steps.map((step, index) => {
               const isCompleted = index < currentStep;
               const isCurrent = index === currentStep;
-              
+
 
               return (
                 <div
@@ -151,7 +159,7 @@ function ExecutionPhase({ executionData, onFinished }) {
                 disabled={steps.length === 0}
               >
                 {currentStep < 0 ? 'Start Execution' : 'Next'}
-                <FastForward size={20}/>
+                <FastForward size={20} />
               </Button>
             ) : (
               <Button

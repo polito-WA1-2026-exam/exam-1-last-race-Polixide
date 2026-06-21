@@ -38,4 +38,12 @@ const submitRoute = async (gameId, route) => {
     return res.json();
 };
 
-export { getRanking, getUserStats, getNetwork, createGame, submitRoute };
+const deleteGame = async (gameId) => {
+    const res = await fetch(`${SERVER_URL}/games/${gameId}`, {
+        method: 'DELETE',
+        credentials: 'include',
+    });
+    if (!res.ok && res.status !== 204) throw new Error((await res.json()).error);
+};
+
+export { getRanking, getUserStats, getNetwork, createGame, submitRoute, deleteGame };

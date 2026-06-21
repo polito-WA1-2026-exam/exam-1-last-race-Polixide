@@ -614,6 +614,51 @@ body {
   color: #64748b;
 }
 
+/* ---- RESULT PHASE ---- */
+.lr-result-score-card {
+  background-color: rgba(30, 41, 59, 0.3);
+  border: 1px solid var(--lr-border);
+  border-radius: 14px;
+}
+
+.lr-result-score-card--success {
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.18), rgba(5, 150, 105, 0.18));
+  border-color: rgba(16, 185, 129, 0.5);
+}
+
+.lr-result-score-card--zero {
+  background-color: rgba(30, 41, 59, 0.3);
+  border-color: var(--lr-border);
+}
+
+.lr-result-score {
+  font-size: 4.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.lr-result-best-banner {
+  background-color: rgba(245, 158, 11, 0.18);
+  border: 1px solid rgba(245, 158, 11, 0.5);
+  border-radius: 14px;
+  color: #fef3c7;
+}
+
+.lr-btn-amber.btn {
+  background-color: #f59e0b;
+  border-color: #f59e0b;
+  color: #fff;
+  padding: 0.75rem;
+  font-weight: 600;
+}
+
+.lr-btn-amber.btn:hover,
+.lr-btn-amber.btn:focus {
+  background-color: #d97706;
+  border-color: #d97706;
+  color: #fff;
+}
+
 /* ---- EXECUTION PHASE ---- */
 
 .lr-exec-coins-simple {

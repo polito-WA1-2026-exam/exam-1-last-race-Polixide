@@ -12,6 +12,7 @@ function NavHeader() {
 
   const isActive = (path) => location.pathname === path;
 
+
   const handleLogout = async () => {
     await logout();
     navigate('/');
