@@ -4,7 +4,7 @@ import { SetupPhase } from '../ui/SetupPhase';
 import { PlanningPhase } from '../ui/PlanningPhase';
 import { ExecutionPhase } from '../ui/ExecutionPhase';
 import { ResultPhase } from '../ui/ResultPhase';
-import { getNetwork, createGame } from '../../api/game';
+import { getNetwork, createGame, submitRoute } from '../../api/game';
 
 function GamePage() {
 
@@ -38,8 +38,8 @@ function GamePage() {
             setError('');
             const result = await submitRoute(game.gameId, route);
             setExecutionData(result);
-            // If route is invalid/incomplete, skip execution and go straight to result
-            setPhase(result.valid ? 'execution' : 'result');
+            
+            setPhase('execution')
         } catch (err) {
             setError(err.message);
         }
@@ -73,7 +73,7 @@ function GamePage() {
                 );
             case 'execution':
                 return (
-                    <ExecutionPhase />
+                    <ExecutionPhase executionData={executionData} onFinished={() => setPhase('result')} />
                 );
             case 'result':
                 return (

@@ -106,6 +106,7 @@ function PlanningPhase({ networkData, game, onSubmitted }) {
                     </Card>
                 </Col>
             </Row>
+            
             {/*Available segments*/}
             <Row className="g-4 mb-4">
                 <Col xs={12}>
@@ -187,7 +188,7 @@ function PlanningPhase({ networkData, game, onSubmitted }) {
 
                                             <div className="lr-planning-route-path">
                                                 <span className="text-white">{segment.fromName}</span>
-                                                <ArrowRight size={16} className="lr-muted" />
+                                                <ArrowLeftRight size={16} className="lr-muted" />
                                                 <span className="text-white">{segment.toName}</span>
                                             </div>
 
