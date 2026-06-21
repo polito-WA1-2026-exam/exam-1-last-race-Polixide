@@ -27,7 +27,7 @@ function ExecutionPhase({ executionData, onFinished }) {
     finalScore
   } = executionData;
 
-  const [currentStep, setCurrentStep] = useState(-1);
+  const [currentStep, setCurrentStep] = useState(0);
   const [done, setDone] = useState(false);
 
   const handleNext = () => {
@@ -35,10 +35,10 @@ function ExecutionPhase({ executionData, onFinished }) {
 
     const nextStep = currentStep + 1;
 
-    if (nextStep < steps.length) {
+    if (nextStep <= steps.length) {
       setCurrentStep(nextStep);
 
-      if (nextStep === steps.length - 1) {
+      if (nextStep === steps.length ) {
         setDone(true);
       }
     }
