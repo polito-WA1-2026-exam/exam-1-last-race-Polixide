@@ -3,7 +3,9 @@ import { Card, Button, Row, Col, Alert } from 'react-bootstrap';
 import { Link } from 'react-router';
 import {
     TrophyFill, ArrowRepeat, BarChartFill, StarFill, LightbulbFill, XCircleFill,
-    Trophy
+    Trophy,
+    AwardFill,
+    Award
 } from 'react-bootstrap-icons';
 import { UserStats } from './UserStats.jsx';
 import { getUserStats, getRanking } from '../../api/game.js';
@@ -41,7 +43,7 @@ function ResultPhase({ executionData, onNewGame }) {
                     }}
                 >
                     {valid
-                        ? <TrophyFill size={44} className="text-warning" />
+                        ? <AwardFill size={44} className="text-warning" />
                         : <XCircleFill size={44} className="text-danger" />
                     }
                 </div>
