@@ -18,10 +18,10 @@ function AuthProvider({ children }) {
     try {
       const u = await authApi.login(credentials);
       setUser(u);
+      return u;
     } catch (error) {
       throw new Error(error);
     }
-    return u;
   };
 
   const logout = async () => {

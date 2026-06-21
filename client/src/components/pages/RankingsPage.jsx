@@ -12,7 +12,7 @@ function RankingsPage() {
   const navigate = useNavigate();
 
   const [rankings, setRankings] = useState([]);
-  const [userStats, setUserStats] = useState([]);
+  const [userStats, setUserStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 

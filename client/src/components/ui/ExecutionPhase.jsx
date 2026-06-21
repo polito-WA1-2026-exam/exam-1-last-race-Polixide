@@ -158,7 +158,7 @@ function ExecutionPhase({ executionData, onFinished }) {
                 onClick={handleNext}
                 disabled={steps.length === 0}
               >
-                {currentStep < 0 ? 'Start Execution' : 'Next'}
+                Next
                 <FastForward size={20} />
               </Button>
             ) : (

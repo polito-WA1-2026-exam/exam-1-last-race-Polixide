@@ -1,11 +1,11 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, Button, Row, Col } from 'react-bootstrap';
-import { ClockHistory, GeoAlt, Flag, ArrowRight, Trash, SendFill, Trash2, XCircleFill, ArrowLeftRight } from 'react-bootstrap-icons';
+import { ClockHistory, GeoAlt, Flag, SendFill, XCircleFill, ArrowLeftRight } from 'react-bootstrap-icons';
 import MetroMap from './MetroMap.jsx';
 
 function PlanningPhase({ networkData, game, onSubmitted }) {
 
-    const [timeLeft, setTimeLeft] = useState(9000);
+    const [timeLeft, setTimeLeft] = useState(90);
     const [submitted, setSubmitted] = useState(false);
     const [selectedSegments, setSelectedSegments] = useState([]);
 
@@ -33,8 +33,6 @@ function PlanningPhase({ networkData, game, onSubmitted }) {
     const handleRemoveSegment = (index) => {
 
         if (submitted) return;
-
-        const seg = selectedSegments[index];
         setSelectedSegments(prev => prev.filter((_, i) => i !== index));
 
     };

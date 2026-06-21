@@ -69,7 +69,7 @@ function GameDao() {
         );
 
     this.saveGameResult = async (gameId, userId, finalScore) => {
-        await dbRun('UPDATE games SET score = ? WHERE id = ?', [finalScore, gameId]);
+        await dbRun('UPDATE games SET score = ? WHERE id = ? AND user_id = ?', [finalScore, gameId,userId]);
         // Update the user's best_score only if this game surpasses it
         await dbRun(
             'UPDATE users SET best_score = ? WHERE id = ? AND best_score < ?',

@@ -63,7 +63,17 @@ function findValidPairs(stationIds, adj, minDistance = 3) {
 */
 function validateRoute(segmentIds, startStation, destStation, segments, interchangeIds) {
 
+    //check that routes must not involve any segment more than once
+    const usedIds = new Set();
+    for (const id of segmentIds){
+        if(usedIds.has(id)){
+            return { valid: false, invalidReason: 'Route uses the same segment more than once' };
+        }
+        usedIds.add(id);
+    }
+
     const segById = Object.fromEntries(segments.map(s => [s.id, s]));
+
 
     let current = startStation;
     let currentLine = null;
