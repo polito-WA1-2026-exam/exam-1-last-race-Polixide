@@ -5,7 +5,7 @@ import { JournalText, Clock, CashCoin, GeoAltFill, CheckCircleFill, XCircleFill,
 function InstructionsPage() {
     const LINES = {
         mars: '#f43f5e',     // red
-        jupyter: '#facc15',  // yellow
+        jupiter: '#facc15',  // yellow
         earth: '#10b981',    // green
         neptune: '#3b82f6',  // blue
     };
@@ -15,7 +15,7 @@ function InstructionsPage() {
         { name: 'Vega', line: LINES.mars },
         { name: 'Orion', line: LINES.neptune },
         { name: 'Helios', line: LINES.earth },
-        { name: 'Polaris', line: LINES.jupyter },
+        { name: 'Polaris', line: LINES.jupiter },
     ];
 
     const DEMO_EVENTS = [
@@ -188,7 +188,7 @@ function InstructionsPage() {
                     <Row className="g-3">
                         {[
                             { name: 'Mars', color: LINES.mars },
-                            { name: 'Jupyter', color: LINES.jupyter },
+                            { name: 'Jupiter', color: LINES.jupiter },
                             { name: 'Earth', color: LINES.earth },
                             { name: 'Neptune', color: LINES.neptune },
                         ].map((l) => (

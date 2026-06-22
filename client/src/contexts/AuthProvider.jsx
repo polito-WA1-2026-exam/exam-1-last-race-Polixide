@@ -20,7 +20,7 @@ function AuthProvider({ children }) {
       setUser(u);
       return u;
     } catch (error) {
-      throw new Error(error);
+      throw error;
     }
   };
 
@@ -28,10 +28,10 @@ function AuthProvider({ children }) {
     try {
       await authApi.logout();
     } catch (error) {
-      throw new Error(error);
+      throw error;
+    } finally {
+      setUser(null);
     }
-    
-    setUser(null);
   };
 
   return (

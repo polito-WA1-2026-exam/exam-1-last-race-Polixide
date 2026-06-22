@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Card, Button, Row, Col, Alert } from 'react-bootstrap';
 import { Link } from 'react-router';
 import {
@@ -9,22 +9,23 @@ import {
 } from 'react-bootstrap-icons';
 import { UserStats } from './UserStats.jsx';
 import { getUserStats, getRanking } from '../../api/game.js';
+import { AuthContext } from '../../contexts/AuthContext.js';
 
 function ResultPhase({ executionData, onNewGame }) {
 
     const { valid, finalScore , steps, invalidReason } = executionData ?? {};
-
+    const { user } = useContext(AuthContext);
     const [stats, setStats] = useState(null);
     const [rank, setRank] = useState(0);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         Promise.all([getUserStats(), getRanking()])
             .then(([statsData, rankingData]) => {
                 setStats(statsData);
-                const best = statsData.best_score ?? 0;
-                setRank(best > 0 ? rankingData.filter(u => u.best_score > best).length + 1 : 0);
+                setRank(rankingData.findIndex((u) => u.id === user.id) + 1);
             })
-            .catch(() => {});
+            .catch((err) => setError(err.message));
     }, []);
 
     const segmentsCount = steps.length;
@@ -81,6 +82,7 @@ function ResultPhase({ executionData, onNewGame }) {
             )}
 
             {/*User stats*/}
+            {error && <Alert variant="danger">{error}</Alert>}
             {stats && <UserStats stats={stats} rank={rank} />}
 
             {/*Actions*/}

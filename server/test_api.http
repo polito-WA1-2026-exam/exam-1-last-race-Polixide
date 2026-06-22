@@ -3,10 +3,12 @@
 // Authentication APIs
 
 ###
+// check if there is an active session -> 200 with user, or 401
 GET {{PREFIX}}/sessions/current
 
 
 ###
+// login with valid credentials -> 200 with user object
 POST {{PREFIX}}/sessions
 Content-Type: application/json
 
@@ -16,6 +18,7 @@ Content-Type: application/json
 }
 
 ###
+// login with wrong credentials -> 401
 POST {{PREFIX}}/sessions
 Content-Type: application/json
 
@@ -25,26 +28,133 @@ Content-Type: application/json
 }
 
 ###
+// logout (destroys the session) -> 200
 DELETE  {{PREFIX}}/sessions/current
 
 
 // Game APIs
 
 ###
-
+// get the ranking of all users by best score -> 200
 GET {{PREFIX}}/users/ranking
 
 ###
-
+// get stats of the logged-in user (games played, best score, avg score) -> 200
 GET {{PREFIX}}/games/stats
 
 ###
+// get the full metro network (lines, stations, segments) -> 200
 GET {{PREFIX}}/network
 
 ###
+// create a new game: picks a random valid (start, dest) pair -> 201 with gameId
 POST {{PREFIX}}/games
 Content-Type: application/json
 
 {
-    
+
+}
+
+// DELETE /games/:gameId - delete an incomplete game
+
+###
+// valid gameId (replace 1 with a real gameId from POST /games) -> 204
+DELETE {{PREFIX}}/games/1
+
+###
+// invalid gameId (not an integer >= 1) -> 422
+DELETE {{PREFIX}}/games/0
+
+###
+// non-existent gameId -> 204 (delete is idempotent)
+DELETE {{PREFIX}}/games/99999
+
+
+// POST /games/:gameId/route - submit a route
+
+###
+// valid route (replace gameId and segment ids with real values) -> 200
+POST {{PREFIX}}/games/1/route
+Content-Type: application/json
+
+{
+    "route": [1, 2, 3]
+}
+
+###
+// route is not an array -> 422
+POST {{PREFIX}}/games/1/route
+Content-Type: application/json
+
+{
+    "route": "not-an-array"
+}
+
+###
+// route contains non-integer values -> 422
+POST {{PREFIX}}/games/1/route
+Content-Type: application/json
+
+{
+    "route": ["a", "b"]
+}
+
+###
+// missing route field entirely -> 422
+POST {{PREFIX}}/games/1/route
+Content-Type: application/json
+
+{}
+
+###
+// non-existent or already completed game -> 404
+POST {{PREFIX}}/games/99999/route
+Content-Type: application/json
+
+{
+    "route": [1, 2, 3]
+}
+
+###
+// invalid gameId param -> 422
+POST {{PREFIX}}/games/abc/route
+Content-Type: application/json
+
+{
+    "route": [1, 2, 3]
+}
+
+
+// Protected routes called WITHOUT being logged in -> 401
+
+###
+// ranking without session -> 401
+GET {{PREFIX}}/users/ranking
+
+###
+// stats without session -> 401
+GET {{PREFIX}}/games/stats
+
+###
+// network without session -> 401
+GET {{PREFIX}}/network
+
+###
+// create game without session -> 401
+POST {{PREFIX}}/games
+Content-Type: application/json
+
+{}
+
+###
+// delete game without session -> 401
+DELETE {{PREFIX}}/games/1
+
+###
+// submit route without session -> 401
+POST {{PREFIX}}/games/1/route
+Content-Type: application/json
+
+{
+    "route": [1, 2, 3]
 }

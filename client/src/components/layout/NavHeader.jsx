@@ -1,5 +1,5 @@
-import { useContext } from 'react';
-import { Container, Nav, Navbar, Button } from 'react-bootstrap';
+import { useContext, useState } from 'react';
+import { Container, Nav, Navbar, Button, Alert } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { House, Book, TrainFront, Trophy, BoxArrowRight, BoxArrowInRight, Controller, BoxArrowInLeft } from 'react-bootstrap-icons';
 import { AuthContext } from '../../contexts/AuthContext';
@@ -14,10 +14,16 @@ function NavHeader() {
 
 
   const handleLogout = async () => {
-    await logout();
-    navigate('/');
+    try {
+      await logout();
+    } catch (error) {
+      throw new Error(error);
+    } finally {
+      navigate('/');
+    }
+    
   };
-
+  
   const navLinkClass = (path) =>
     `d-flex align-items-center gap-2 fs-5 ${isActive(path) ? 'active fw-semibold' : ''}`;
 
