@@ -61,6 +61,8 @@ router.post('/games', isLoggedIn, async (req, res) => {
 
         //we randomly select one valid pair randomly
         const { start, dest } = validPairs[Math.floor(Math.random() * validPairs.length)];
+        // Clean up any abandoned session before starting a new one
+        await gameDao.deleteAbandonedGames(req.user.id);
         //we initialize a new game by creating a record in the games table with the score = NULL
         const { lastID: gameId } = await gameDao.createGameRecord(req.user.id, start, dest);
 

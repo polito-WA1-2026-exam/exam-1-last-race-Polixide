@@ -59,7 +59,7 @@ Content-Type: application/json
 
 ###
 // valid gameId (replace 1 with a real gameId from POST /games) -> 204
-DELETE {{PREFIX}}/games/1
+DELETE {{PREFIX}}/games/40
 
 ###
 // invalid gameId (not an integer >= 1) -> 422

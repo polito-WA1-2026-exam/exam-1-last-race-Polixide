@@ -48,6 +48,9 @@ function GameDao() {
     this.getAllEvents = () =>
         dbAll('SELECT id, description, coin_change FROM events');
 
+    this.deleteAbandonedGames = (userId) =>
+        dbRun('DELETE FROM games WHERE user_id = ? AND score IS NULL', [userId]);
+
     this.createGameRecord = (userId, startStation, destStation) =>
         dbRun(
             `INSERT INTO games (user_id, start_station, dest_station, score, date_played)
